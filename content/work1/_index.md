@@ -1,19 +1,44 @@
 +++
-title = "Service Catalog"
+title = "Demo 1 - Create IAM User & Policies"
 date = 2021-02-17T17:04:42-06:00
-weight = 2
+weight = 1
 chapter = false
 pre = "<b>1. </b>"
 +++
 
-**AWS Service Catalog** enables organizations to create and manage catalogs of IT services that are approved for use on AWS. These IT services can include everything from virtual machine (VM) images, servers, software, and databases to complete multi-tier application architectures. 
+### Description
 
-You can use AWS Service Catalog to create preconfigured products that your developers can launch. In a large organization, it’s typical for a cross-functional team like a Cloud Center of Excellence (CCoE) to maintain the catalog for the organization. An AWS Service Catalog product can contain one or more AWS resources. Many customers use AWS Service Catalog to restrict access to resources, such as AWS APIs, using a launch constraint. Launch constraints allow an AWS Service Catalog end user to launch an AWS Service Catalog product without requiring elevated permissions to AWS resources.
+In this demo you will demostrate how to create custom IAM policies and users and put those policies to the test
 
-You can centrally manage commonly deployed IT services to achieve consistent governance and meet your compliance requirements, while enabling users to deploy only the approved IT services they need. The IT services are grouped as products, and the products are organized in portfolios. 
+#### Demo diagram
 
-In this lab, you will perform this activities:
+<img src="images/IAM-demo-1.png" alt="drawing" width="800"/>
 
-* Create **AWS Service Catalog** portfolio and products
-* Share a portfolio with users and groups
-* Consume an **AWS Service Catalog** product from the user perspective
+1. In this Demo you will create the following resources
+
+    * 2x  *Customer manged* IAM policies
+
+    * 1x IAM user
+
+1. Attach 4 policies to an IAM user
+
+1. Perform the following actions:
+
+    * Test if the IAM user is able to stop, reboot or terminate a *Production* environment EC2 instance
+    * Put an item in a DynamoDB table
+
+### Pre-requisites
+
+1. At least one EC2 instance running, with added Tags
+
+	| Tag Key | Tag Value  |
+	|---|---|
+	| Env | Production |
+
+1. At least two DynamoDB tables, one called `demo-iam-table`
+
+    You can create table `demo-iam-table` with this cli command:
+
+    ````bash
+    aws dynamodb create-table --table-name demo-iam-table --key-schema --attribute-definitions AttributeName=email,AttributeType=S --key-schema AttributeName=recordId,KeyType=HASH --billing-mode PAY_PER_REQUEST
+    ````
