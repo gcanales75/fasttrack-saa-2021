@@ -40,5 +40,5 @@ In this demo you will demostrate how to create custom IAM policies and users and
     You can create table `demo-iam-table` with this cli command:
 
     ````bash
-    aws dynamodb create-table --table-name demo-iam-table --key-schema --attribute-definitions AttributeName=email,AttributeType=S --key-schema AttributeName=recordId,KeyType=HASH --billing-mode PAY_PER_REQUEST
+    aws dynamodb create-table --table-name demo-iam-table --key-schema --attribute-definitions AttributeName=email,AttributeType=S --key-schema AttributeName=email,KeyType=HASH --billing-mode PAY_PER_REQUEST
     ````
